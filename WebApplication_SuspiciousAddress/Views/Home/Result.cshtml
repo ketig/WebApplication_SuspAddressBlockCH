@@ -1,0 +1,42 @@
+﻿@model IEnumerable<WebApplication_SuspiciousAddress.Models.Transaction>
+
+@{
+    ViewBag.Title = "Result";
+}
+
+<div class="jumbotron text-center">
+    <h2>Identify suspicious entities on blockchains</h2>
+</div>
+
+<div class="table">
+    <table>
+        <tr>
+            <th>Suspicious address</th>
+            <th>Amount</th>
+            <th>To address</th>
+            <th>Time</th>
+            <th>Distance</th>
+        </tr>
+
+        @foreach (var item in Model@*.OrderBy(x => x.Distance).ThenBy(x => x.Time)*@)
+{
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.OwnerAddress)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Amount)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ToAddress)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Time)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Distance)
+    </td>
+</tr>
+}
+    </table>
+</div>
